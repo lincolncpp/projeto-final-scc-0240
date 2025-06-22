@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS escola CASCADE;
 CREATE SCHEMA escola;
 SET search_path TO escola;
 
@@ -23,7 +24,7 @@ CREATE TABLE usuario (
     nome VARCHAR(100) NOT NULL,
     sobrenome VARCHAR(100) NOT NULL,
     data_nascimento DATE NOT NULL,
-    sexo CHAR(1) CHECK (sexo IN ('M', 'F', 'X')),
+    sexo CHAR(1) CHECK (sexo IN ('H', 'M', 'X')),
     telefone VARCHAR(20) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(100) NOT NULL,
