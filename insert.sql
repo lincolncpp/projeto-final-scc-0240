@@ -1,9 +1,14 @@
+-- UNIDADE
 INSERT INTO escola.unidade (id, cidade, estado, pais, predio) VALUES (1, 'São Paulo', 'SP', 'Brasil', 'Prédio A');
 INSERT INTO escola.unidade (id, cidade, estado, pais, predio) VALUES (2, 'Rio de Janeiro', 'RJ', 'Brasil', 'Prédio C');
 INSERT INTO escola.unidade (id, cidade, estado, pais, predio) VALUES (3, 'Belo Horizonte', 'MG', 'Brasil', 'Prédio C');
+
+-- DEPARTAMENTO
 INSERT INTO escola.departamento (id, nome, codigo) VALUES (1, 'Departamento de Matemática', 'DEP101');
 INSERT INTO escola.departamento (id, nome, codigo) VALUES (2, 'Departamento de Engenharia de Software', 'DEP102');
 INSERT INTO escola.departamento (id, nome, codigo) VALUES (3, 'Departamento de Ciências Humanas', 'DEP103');
+
+-- USUARIO
 INSERT INTO escola.usuario (
         id, nome, sobrenome, data_nascimento, sexo, telefone, email, senha,
         rua, numero, bairro, cidade, estado, pais, cep, tipo_usuario, unidade_id
@@ -229,6 +234,8 @@ INSERT INTO escola.usuario (
         'Manacas', 'Belo Horizonte', 'SP', 'Brasil',
         '40608629', 'administrativo', 2
     );
+
+-- PROFESSOR
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (1, 'Algoritmos', 'Mestre');
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (2, 'Probabilidade', 'Doutor');
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (3, 'Teoria da Computação', 'Mestre');
@@ -239,11 +246,15 @@ INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (8, 'Computação Gráfica', 'Doutor');
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (9, 'Matemática Discreta', 'Mestre');
 INSERT INTO escola.professor (usuario_id, area_especializacao, titulacao) VALUES (10, 'Sistemas Operacionais', 'Doutor');
+
+-- CURSO
 INSERT INTO escola.curso (id, nome, codigo, nivel, carga_horaria, numero_vagas, ementa, sala_padrao, departamento_id, unidade_id) VALUES (1, 'Bacharelado em Ciência da Computação', 'C001', 'graduacao', 3000, 60, 'Formação completa em Bacharelado em Ciência da Computação', 'Sala 101', 2, 2);
 INSERT INTO escola.curso (id, nome, codigo, nivel, carga_horaria, numero_vagas, ementa, sala_padrao, departamento_id, unidade_id) VALUES (2, 'Bacharelado em Matemática Aplicada', 'C002', 'graduacao', 3000, 60, 'Formação completa em Bacharelado em Matemática Aplicada', 'Sala 201', 3, 3);
 INSERT INTO escola.curso (id, nome, codigo, nivel, carga_horaria, numero_vagas, ementa, sala_padrao, departamento_id, unidade_id) VALUES (3, 'Engenharia de Computação', 'C003', 'graduacao', 3000, 60, 'Formação completa em Engenharia de Computação', 'Sala 301', 1, 1);
 INSERT INTO escola.curso (id, nome, codigo, nivel, carga_horaria, numero_vagas, ementa, sala_padrao, departamento_id, unidade_id) VALUES (4, 'Bacharelado em Estatística', 'C004', 'graduacao', 3000, 60, 'Formação completa em Bacharelado em Estatística', 'Sala 401', 2, 2);
 INSERT INTO escola.curso (id, nome, codigo, nivel, carga_horaria, numero_vagas, ementa, sala_padrao, departamento_id, unidade_id) VALUES (5, 'Sistemas de Informação', 'C005', 'graduacao', 3000, 60, 'Formação completa em Sistemas de Informação', 'Sala 501', 3, 3);
+
+-- DISCIPLINA
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (1, 'Álgebra Linear', 'D001', 5, 'Livro: Fundamentos de Álgebra Linear', 2);
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (2, 'Cálculo I', 'D002', 2, 'Livro: Fundamentos de Cálculo I', 1);
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (3, 'Estrutura de Dados', 'D003', 2, 'Livro: Fundamentos de Estrutura de Dados', 1);
@@ -254,6 +265,8 @@ INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (8, 'História da Arte', 'D008', 3, 'Livro: Fundamentos de História da Arte', 2);
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (9, 'Filosofia Moderna', 'D009', 3, 'Livro: Fundamentos de Filosofia Moderna', 2);
 INSERT INTO escola.disciplina (id, nome, codigo, aulas_semana, material_didatico, unidade_id) VALUES (10, 'Literatura Brasileira', 'D010', 5, 'Livro: Fundamentos de Literatura Brasileira', 1);
+
+-- CURSO_DISCIPLINA
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (5, 1);
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (3, 2);
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (3, 3);
@@ -264,6 +277,8 @@ INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (2, 7);
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (1, 8);
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (1, 9);
 INSERT INTO escola.curso_disciplina (curso_id, disciplina_id) VALUES (2, 10);
+
+-- DISCIPLINA_PROFESSOR
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (1, 3);
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (2, 7);
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (3, 10);
@@ -274,6 +289,8 @@ INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (7,
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (8, 2);
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (9, 7);
 INSERT INTO escola.disciplina_professor (disciplina_id, professor_id) VALUES (10, 8);
+
+-- MATRICULA
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (1, 11, 1, 2, '2024.1', '2024-01-10', 'ativa', 7.1, 813, 604, '2024-01-05');
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (2, 12, 1, 3, '2024.1', '2024-01-10', 'ativa', 5.2, 655, 872, '2024-01-05');
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (3, 16, 10, 4, '2024.1', '2024-01-10', 'ativa', 6.4, 810, 724, '2024-01-05');
@@ -294,6 +311,8 @@ INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_let
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (18, 13, 6, 4, '2024.1', '2024-01-10', 'ativa', 7.6, 182, 542, '2024-01-05');
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (19, 19, 8, 5, '2024.1', '2024-01-10', 'ativa', 5.5, 968, 542, '2024-01-05');
 INSERT INTO escola.matricula (id, aluno_id, disciplina_id, curso_id, periodo_letivo, data_matricula, status, nota, bolsa_desconto, taxa_pago, data_limite) VALUES (20, 15, 4, 4, '2024.1', '2024-01-10', 'ativa', 7.7, 770, 841, '2024-01-05');
+
+-- AVALIAÇÃO
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (19, 10, 10, 'Muito bom', 5, 5, 3, 5);
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (16, 6, 3, 'Muito bom', 4, 4, 3, 3);
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (11, 5, 1, 'Muito bom', 4, 5, 4, 5);
@@ -304,6 +323,8 @@ INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario,
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (11, 8, 1, 'Muito bom', 4, 4, 3, 4);
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (12, 2, 2, 'Muito bom', 3, 4, 4, 5);
 INSERT INTO escola.avaliacao (aluno_id, disciplina_id, professor_id, comentario, didatica, material_apoio, relevancia_conteudo, infraestrutura) VALUES (19, 5, 1, 'Muito bom', 3, 5, 3, 3);
+
+-- MENSAGEM
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (17, 3, 'Oi, professor(a)! Poderia revisar a questão 3 da última aula?');
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (18, 7, 'Bom dia! Quando será disponibilizado o material de apoio?');
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (13, 3, 'Olá! Estou com dificuldade na lista de exercícios.');
@@ -314,28 +335,42 @@ INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (12, 9
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (13, 7, 'Boa tarde! Pode corrigir minha nota na atividade 2?');
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (14, 4, 'Oi, professor(a)! Tem plantão de dúvidas essa semana?');
 INSERT INTO escola.mensagem (remetente_id, destinatario_id, texto) VALUES (13, 9, 'Estou gostando muito da disciplina! Parabéns pela didática!');
+
+-- INFRAESTRUTURA & REGRA 1
 INSERT INTO escola.infraestrutura (id, descricao) VALUES (1, 'Infraestrutura 1 - Laboratório Informática');
 INSERT INTO escola.regra (id, descricao) VALUES (1, 'Regra 1: frequência mínima de 75% e nota >= 6.0');
 INSERT INTO escola.curso_infraestrutura (curso_id, infraestrutura_id) VALUES (4, 1);
 INSERT INTO escola.curso_regra (curso_id, regra_id) VALUES (1, 1);
+
+-- INFRAESTRUTURA & REGRA 2
 INSERT INTO escola.infraestrutura (id, descricao) VALUES (2, 'Infraestrutura 2 - Laboratório Química');
 INSERT INTO escola.regra (id, descricao) VALUES (2, 'Regra 2: frequência mínima de 75% e nota >= 6.0');
 INSERT INTO escola.curso_infraestrutura (curso_id, infraestrutura_id) VALUES (3, 2);
 INSERT INTO escola.curso_regra (curso_id, regra_id) VALUES (5, 2);
+
+-- INFRAESTRUTURA & REGRA 3
 INSERT INTO escola.infraestrutura (id, descricao) VALUES (3, 'Infraestrutura 3 - Laboratório Química');
 INSERT INTO escola.regra (id, descricao) VALUES (3, 'Regra 3: frequência mínima de 75% e nota >= 6.0');
 INSERT INTO escola.curso_infraestrutura (curso_id, infraestrutura_id) VALUES (1, 3);
 INSERT INTO escola.curso_regra (curso_id, regra_id) VALUES (2, 3);
+
+-- INFRAESTRUTURA & REGRA 4
 INSERT INTO escola.infraestrutura (id, descricao) VALUES (4, 'Infraestrutura 4 - Laboratório Física');
 INSERT INTO escola.regra (id, descricao) VALUES (4, 'Regra 4: frequência mínima de 75% e nota >= 6.0');
 INSERT INTO escola.curso_infraestrutura (curso_id, infraestrutura_id) VALUES (1, 4);
 INSERT INTO escola.curso_regra (curso_id, regra_id) VALUES (4, 4);
+
+-- INFRAESTRUTURA & REGRA 5
 INSERT INTO escola.infraestrutura (id, descricao) VALUES (5, 'Infraestrutura 5 - Laboratório Química');
 INSERT INTO escola.regra (id, descricao) VALUES (5, 'Regra 5: frequência mínima de 75% e nota >= 6.0');
 INSERT INTO escola.curso_infraestrutura (curso_id, infraestrutura_id) VALUES (5, 5);
 INSERT INTO escola.curso_regra (curso_id, regra_id) VALUES (1, 5);
+
+-- PREREQUISITO
 INSERT INTO escola.disciplina_prerequisito (disciplina_id, prerequisito_id) VALUES (4, 1);
 INSERT INTO escola.curso_prerequisito (curso_id, prerequisito_id) VALUES (2, 1);
+
+-- DEPARTAMENTO_CHEFE
 INSERT INTO escola.departamento_chefe (departamento_id, professor_id) VALUES (1, 1);
 INSERT INTO escola.departamento_chefe (departamento_id, professor_id) VALUES (2, 2);
 INSERT INTO escola.departamento_chefe (departamento_id, professor_id) VALUES (3, 3);
