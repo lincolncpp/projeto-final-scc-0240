@@ -4,11 +4,11 @@
 CREATE INDEX idx_matricula_periodo
 ON escola.matricula (periodo_letivo);
 
--- 2. INDEX idx_disciplina_nome
--- Algumas consultas recuperam disciplinas específicas pelo nome, então um índice no nome 
--- da disciplina acelera buscas de igualdade (nome = "Banco de Dados", por exemplo).
-CREATE INDEX idx_disciplina_nome
-ON escola.disciplina (nome);
+-- 2. INDEX idx_usuario_estado
+-- O índice idx_usuario_estado melhora a performance de consultas que filtram usuários por estado,
+-- como ao listar alunos ou professores de um estado específico.
+CREATE INDEX idx_usuario_estado
+ON escola.usuario (estado);
 
 -- 3. INDEX idx_matricula_aluno_disciplina
 -- Muitos JOINs e filtros usam aluno_id e disciplina_id juntos para recuperar notas,
