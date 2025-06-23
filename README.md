@@ -39,7 +39,7 @@ O script `insert.sql` insere dados de usuários (alunos, professores e administr
 
 O arquivo `queries.sql` contém 7 consultas:
 
-### 1. Lista os alunos que estão matriculados na disciplina "Banco de Dados" no período "2024.1"
+**1. Lista os alunos que estão matriculados na disciplina "Banco de Dados" no período "2024.1"**
 
 ```sql
 SELECT u.nome, u.sobrenome, d.nome AS disciplina, m.periodo_letivo
@@ -48,8 +48,9 @@ JOIN escola.usuario u ON m.aluno_id = u.id
 JOIN escola.disciplina d ON m.disciplina_id = d.id
 WHERE d.nome = 'Banco de Dados' AND m.periodo_letivo = '2024.1';
 ```
+---
 
-### 2. Calcula a média das notas do aluno id 13, considerando todas as disciplinas em que ele está matriculado
+**2. Calcula a média das notas do aluno id 13, considerando todas as disciplinas em que ele está matriculado**
 
 ```sql
 SELECT u.nome, u.sobrenome, ROUND(AVG(m.nota), 2) AS media
@@ -58,8 +59,9 @@ JOIN escola.usuario u ON m.aluno_id = u.id
 WHERE u.id = 13
 GROUP BY u.nome, u.sobrenome;
 ```
+---
 
-### 3. Relaciona cada professor as disciplinas que ele ministra
+**3. Relaciona cada professor as disciplinas que ele ministra**
 
 ```sql
 SELECT u.nome AS professor, d.nome AS disciplina
@@ -69,8 +71,9 @@ JOIN escola.disciplina_professor dp ON dp.professor_id = p.usuario_id
 JOIN escola.disciplina d ON d.id = dp.disciplina_id
 ORDER BY u.nome, d.nome;
 ```
+---
 
-### 4. Exibe os alunos, as disciplinas em que estão matriculados e os cursos correspondentes no período "2024.1"
+**4. Exibe os alunos, as disciplinas em que estão matriculados e os cursos correspondentes no período "2024.1"**
 
 ```sql
 SELECT a.nome AS aluno, d.nome AS disciplina, c.nome AS curso
@@ -81,8 +84,9 @@ JOIN escola.curso c ON m.curso_id = c.id
 WHERE m.periodo_letivo = '2024.1'
 ORDER BY a.nome, d.nome;
 ```
+---
 
-### 5. Calcula a média de cada critério de avaliação por professor
+**5. Calcula a média de cada critério de avaliação por professor**
 
 ```sql
 SELECT u.nome, u.sobrenome,
@@ -94,8 +98,9 @@ FROM escola.avaliacao a
 JOIN escola.usuario u ON a.professor_id = u.id
 GROUP BY u.nome, u.sobrenome;
 ```
+---
 
-### 6. Exibe as disciplinas que possuem pré-requisitos e quais são esses pré-requisitos
+**6. Exibe as disciplinas que possuem pré-requisitos e quais são esses pré-requisitos**
 
 ```sql
 SELECT d1.nome AS disciplina, d2.nome AS prerequisito
@@ -103,8 +108,9 @@ FROM escola.disciplina_prerequisito dp
 JOIN escola.disciplina d1 ON dp.disciplina_id = d1.id
 JOIN escola.disciplina d2 ON dp.prerequisito_id = d2.id;
 ```
+---
 
-### 7. Informa quantas matrículas cada curso teve no período "2024.1"
+**7. Informa quantas matrículas cada curso teve no período "2024.1"**
 
 ```sql
 SELECT c.nome AS curso, COUNT(*) AS total_matriculas
