@@ -35,7 +35,7 @@ O script `create.sql` cria o esquema `escola` e todas as tabelas do projeto com 
 
 O script `insert.sql` insere dados de usuários (alunos, professores e administrativos), cursos, disciplinas, matrículas, avaliações, infraestrutura, regras e pré-requisitos.
 
-## Consultas (queries.sql)
+## Consultas Relevantes
 
 O arquivo `queries.sql` contém 7 consultas:
 
@@ -114,3 +114,51 @@ WHERE m.periodo_letivo = '2024.1'
 GROUP BY c.nome
 ORDER BY total_matriculas DESC;
 ```
+
+## Índices e Análise de Desempenho
+
+Para melhorar a performance de consultas recorrentes, foram criados os seguintes índices:
+
+```sql
+CREATE INDEX idx_matricula_periodo
+ON escola.matricula (periodo_letivo);
+
+CREATE INDEX idx_usuario_estado
+ON escola.usuario (estado);
+
+CREATE INDEX idx_matricula_aluno_disciplina
+ON escola.matricula (aluno_id, disciplina_id);
+```
+
+### Consultas utilizadas para testes
+
+**Contagem de matrículas no período letivo 2024.1**
+```sql
+SELECT COUNT(1)
+FROM escola.matricula
+WHERE periodo_letivo = '2024.1';
+```
+Sem índice: Execution Time: 2.220 ms\
+Com índice: Execution Time: 0.765 ms
+
+---
+
+**Busca de usuários do estado de São Paulo**
+```sql
+SELECT id, nome, estado
+FROM escola.usuario
+WHERE estado = 'SP';
+```
+Sem índice: Execution Time: 1.859 ms\
+Com índice: Execution Time: 0.221 ms
+
+---
+
+**Notas de um aluno em uma disciplina específica**
+```sql
+SELECT nota, status
+FROM escola.matricula
+WHERE aluno_id = 1050 AND disciplina_id = 3;
+```
+Sem índice: Execution Time: 1.409 ms\
+Com índice: Execution Time: 0.026 ms
