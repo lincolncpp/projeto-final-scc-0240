@@ -168,3 +168,70 @@ WHERE aluno_id = 1050 AND disciplina_id = 3;
 ```
 Sem índice: Execution Time: 1.409 ms\
 Com índice: Execution Time: 0.026 ms
+
+
+## Visões
+Foram criadas três visões para facilitar a análise dos dados e permitir consultas mais legíveis e eficientes:
+
+**vw_disciplinas_com_professores**
+
+Exibe a lista de disciplinas com os respectivos professores responsáveis, incluindo titulação e área de especialização.
+
+```sql
+CREATE OR REPLACE VIEW escola.vw_disciplinas_com_professores AS
+SELECT
+    d.nome AS nome_disciplina,
+    d.codigo AS codigo_disciplina,
+    u.nome AS nome_professor,
+    u.sobrenome AS sobrenome_professor,
+    p.titulacao,
+    p.area_especializacao
+FROM escola.disciplina d
+JOIN escola.disciplina_professor dp ON d.id = dp.disciplina_id
+JOIN escola.professor p ON dp.professor_id = p.usuario_id
+JOIN escola.usuario u ON p.usuario_id = u.id;
+```
+
+---
+
+**vw_matriculas_com_curso**
+
+Apresenta uma visão consolidada das matrículas com informações do aluno, da disciplina e do curso em que está matriculado.
+
+```sql
+CREATE OR REPLACE VIEW escola.vw_matriculas_com_curso AS
+SELECT
+    m.id AS id_matricula,
+    u.nome AS nome_aluno,
+    u.sobrenome AS sobrenome_aluno,
+    d.nome AS nome_disciplina,
+    c.nome AS nome_curso,
+    m.periodo_letivo,
+    m.nota,
+    m.status
+FROM escola.matricula m
+JOIN escola.usuario u ON m.aluno_id = u.id
+JOIN escola.disciplina d ON m.disciplina_id = d.id
+JOIN escola.curso c ON m.curso_id = c.id;
+```
+
+---
+
+**vw_avaliacao_professores**
+
+Exibe um resumo das avaliações realizadas aos professores, apresentando a média de cada ponto avaliado.
+
+```sql
+CREATE OR REPLACE VIEW escola.vw_avaliacao_professores AS
+SELECT
+    u.id AS id_professor,
+    u.nome,
+    u.sobrenome,
+    ROUND(AVG(a.didatica), 2) AS media_didatica,
+    ROUND(AVG(a.material_apoio), 2) AS media_material,
+    ROUND(AVG(a.relevancia_conteudo), 2) AS media_conteudo,
+    ROUND(AVG(a.infraestrutura), 2) AS media_infra
+FROM escola.avaliacao a
+JOIN escola.usuario u ON a.professor_id = u.id
+GROUP BY u.id, u.nome, u.sobrenome;
+```
