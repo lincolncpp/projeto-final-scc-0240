@@ -140,6 +140,7 @@ ON escola.matricula (aluno_id, disciplina_id);
 
 **Contagem de matrículas no período letivo 2024.1**
 ```sql
+EXPLAIN ANALYZE
 SELECT COUNT(1)
 FROM escola.matricula
 WHERE periodo_letivo = '2024.1';
@@ -151,6 +152,7 @@ Com índice: Execution Time: 0.765 ms
 
 **Busca de usuários do estado de São Paulo**
 ```sql
+EXPLAIN ANALYZE
 SELECT id, nome, estado
 FROM escola.usuario
 WHERE estado = 'SP';
@@ -162,6 +164,7 @@ Com índice: Execution Time: 0.221 ms
 
 **Notas de um aluno em uma disciplina específica**
 ```sql
+EXPLAIN ANALYZE
 SELECT nota, status
 FROM escola.matricula
 WHERE aluno_id = 1050 AND disciplina_id = 3;
